@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'gradle:6.9.2-jdk8'
-            reuseNode: true
+            reuseNode true
         }
     }
 
