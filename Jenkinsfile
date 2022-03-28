@@ -15,7 +15,7 @@ pipeline {
 
         stage ('report') {
             steps {
-                sh './gradlew -Denv=qa '
+                sh "./gradlew -Denv=${env} allureReport && ./gradlew -Denv copy"
             }
         }
     }
