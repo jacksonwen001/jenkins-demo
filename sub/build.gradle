@@ -65,5 +65,3 @@ tasks.register('on-prem', Test) {
         systemProperties = System.getProperties() as Map<String, ?>
     }
 }
-
-
