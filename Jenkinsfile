@@ -12,14 +12,10 @@ pipeline {
                 sh "./gradlew -Denv=${env} on-test"
             }
         }
-
-        stage ('report') {
-            steps{
-                step {
-                    allure includeProperties: false, jdk: '', results: [[path: "reports/${env}/allure-results"]]
-                }
-            }
-
+    }
+    post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: "reports/${env}/allure-results"]]
         }
     }
 }
