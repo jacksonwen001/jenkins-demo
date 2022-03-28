@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage ('on-test') {
             steps {
-                sh "gradle -Denv=${env} sub-project-1:on-test"
+                sh "gradle -Denv=${env} sub:on-test"
             }
         }
     }
     post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: "sub-project-1/reports/${env}/allure-results"]]
+            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/${env}/allure-results"]]
         }
     }
 }
