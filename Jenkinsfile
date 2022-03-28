@@ -14,9 +14,12 @@ pipeline {
         }
 
         stage ('report') {
-            steps {
-                sh "./gradlew -Denv=${env} allureReport && ./gradlew -Denv copy"
+            steps{
+                step {
+                    allure includeProperties: false, jdk: '', results: [[path: 'reports/${env}/allure-results']]
+                }
             }
+
         }
     }
 }
