@@ -1,2 +1,4 @@
 rootProject.name = 'jenkins-demo'
+include 'sub-porject-1'
+include 'sub-project-2'
 

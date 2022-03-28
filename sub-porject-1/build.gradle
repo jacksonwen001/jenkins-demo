@@ -1,0 +1,69 @@
+apply plugin: 'java'
+apply plugin: 'io.qameta.allure'
+
+version(property('version'))
+group(property('group'))
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.8.1"
+    }
+}
+// 依赖框架
+dependencies {
+//    compile project(':web-ui-automation-lib')
+}
+
+// 获取环境变量， 如果是 qa的测试报告 就放在 qa 下， 如果是 uat 就放在 uat 下面。 如果没有设置， 就默认放在 reports 下面
+// 复制是将历史数据复制到相应的文件下，方便下次生成， 因为报告是两个环境的， 也需要设置相应的环境变量
+if(System.getProperty("env")) {
+    allure {
+        autoconfigure = true
+        version = '2.17.0'
+        resultsDir = file("../../reports/${System.getProperty("env")}/allure-results")
+    }
+    task copyToHistory(type: Copy) {
+        from 'build/reports/allure-report/history'
+        into "reports/${System.getProperty("env")}/allure-results/history"
+    }
+}else{
+    allure {
+        autoconfigure = true
+        version = '2.17.0'
+        resultsDir = file("../../reports/allure-results")
+    }
+    task copyToHistory(type: Copy) {
+        from 'build/reports/allure-report/history'
+        into "reports/allure-results/history"
+    }
+}
+
+tasks.register('on-test', Test) {
+    systemProperties = System.getProperties() as Map<String, ?>
+    useTestNG(){
+        suites("src/test/resources/testng.xml")
+    }
+}
+tasks.register('on-retry', Test) {
+    systemProperties = System.getProperties() as Map<String, ?>
+    useTestNG(){
+        suites("src/test/resources/testng-failed.xml")
+    }
+}
+
+
+tasks.register('on-prem', Test) {
+    useTestNG(){
+        if (project.hasProperty('test-name')) {
+            include '**/' + project.property('test-name') + '.class'
+            setSuiteName('RETRY TEST CASES')
+            setTestName('RETRY TEST CASE')
+        }
+        systemProperties = System.getProperties() as Map<String, ?>
+    }
+}
+
+

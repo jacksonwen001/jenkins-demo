@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('on-test') {
             steps {
-                sh "./gradlew -Denv=${env} on-test"
+                sh "gradle -Denv=${env} sub-project-1:on-test"
             }
         }
     }
