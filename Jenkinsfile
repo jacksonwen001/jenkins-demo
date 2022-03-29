@@ -6,14 +6,27 @@ pipeline {
                catchError {
                   script {
                     docker.image('selenoid/chrome:98.0').pull()
-                    docker.images('selenoid/video-recorder:latest-release').pull()
                   }
                }
-               sh "docker images"
-               sh "docker ps "
             }
-
          }
+        stage ('Pull video images') {
+            steps {
+                catchError {
+                    script {
+                         docker.images('selenoid/video-recorder:latest-release').pull()
+                    }
+                }
+            }
+        }
+        stage ("Debug information") {
+            steps {
+                script {
+                    sh "docker images"
+                    sh "docker ps "
+                }
+            }
+        }
         stage ('Run test') {
             steps {
                 catchError {
