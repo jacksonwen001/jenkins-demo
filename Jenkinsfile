@@ -2,14 +2,8 @@ pipeline {
     agent any
     stages {
         stage ('Run test') {
-            agent {
-                docker {
-                    image 'openjdk:8u322-jdk-slim'
-                    reuseNode true
-                }
-            }
             steps {
-                   sh "./gradlew -Denv=qa sub:on-test"
+               sh "./gradlew -Denv=qa sub:on-test"
             }
         }
         stage ('Generate report') {
