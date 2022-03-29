@@ -14,7 +14,7 @@ pipeline {
             steps {
                 catchError {
                     script {
-                         docker.images('selenoid/video-recorder:latest-release').pull()
+                         docker.image('selenoid/video-recorder:latest-release').pull()
                     }
                 }
             }
