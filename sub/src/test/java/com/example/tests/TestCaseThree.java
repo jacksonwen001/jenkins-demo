@@ -32,8 +32,8 @@ public class TestCaseThree {
 
     @Test
     public void testOpen(){
-        Configuration.remote = "http://selenoid:4444/wd/hub";
-        Configuration.reportsFolder = "target/surefire-reports"; 
+        Configuration.remote = "http://192.168.55.54:4444/wd/hub";
+        Configuration.reportsFolder = "target/surefire-reports";
         Configuration.downloadsFolder = "target/downloads";
         Map<String, Object> options = new HashMap<>();
         options.put(enableVNC, true);
@@ -41,7 +41,7 @@ public class TestCaseThree {
         options.put(dns, new String[]{"8.8.8.8"});
         Configuration.browserCapabilities = new ChromeOptions();
         Configuration.browserCapabilities.setCapability(selenoidOptions, options);
-        open("https://segmentfault.com/a/1190000018028996");
+        open("https://www.baidu.com");
         $("#id").shouldBe(Condition.visible).sendKeys("hello");
 
     }
