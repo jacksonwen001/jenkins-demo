@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage ('Run test') {
             steps {
-               sh "./gradlew -Denv=${env} -Dselenoid.hub.url=${server}/wd/hub sub:on-test"
+               sh "./gradlew -Denv=qa sub:on-test"
             }
         }
     }
      post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/${env}/allure-results"]]
+            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/qa/allure-results"]]
         }
      }
 }
