@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage ('Run test') {
             steps {
-               sh "./gradlew -Denv=qa sub:on-test"
+               sh "./gradlew -Denv=${env} -Dselenoid.hub.url=${server}/wd/hub ccp-automation:on-test"
             }
         }
-        stage ('Generate report') {
-            steps {
-               allure includeProperties: false, jdk: '', results: [[path: "sub/reports/qa/allure-results"]]
+        post {
+            always {
+                allure includeProperties: false, jdk: '', results: [[path: "ccp-automation/reports/${env}/allure-results"]]
             }
         }
     }
-
 }
