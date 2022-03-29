@@ -33,6 +33,8 @@ public class TestCaseThree {
     @Test
     public void testOpen(){
         Configuration.remote = "http://selenoid:4444/wd/hub";
+        Configuration.reportsFolder = "target/surefire-reports"; 
+        Configuration.downloadsFolder = "target/downloads";
         Map<String, Object> options = new HashMap<>();
         options.put(enableVNC, true);
         options.put(enableVideo, true);
