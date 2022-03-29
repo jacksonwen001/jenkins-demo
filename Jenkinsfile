@@ -6,7 +6,6 @@ pipeline {
                 docker {
                     image 'openjdk:8u322-jdk-slim'
                     reuseNode true
-
                 }
             }
             steps {
