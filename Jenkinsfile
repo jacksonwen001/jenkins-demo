@@ -36,7 +36,7 @@ pipeline {
     }
     post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/${env}/allure-results"]]
+            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/qa/allure-results"]]
         }
     }
 }
