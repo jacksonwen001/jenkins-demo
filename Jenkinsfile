@@ -1,26 +1,12 @@
 pipeline {
     agent any
     stages {
-//         stage('Build Image') {
-//             steps {
-//                 catchError {
-//                     script {
-//                         docker.build("automation-test", "-f Dockerfile .")
-//                     }
-//                 }
-//             }
-//         }
         stage('Pull browser') {
-//             agent {
-//                 docker {
-//                    image 'selenoid/chrome:98.0'
-//                    reuseNode true
-//                 }
-//             }
             steps {
                catchError {
                   script {
                     docker.image('selenoid/chrome:98.0').pull()
+                    docker.images('selenoid/video-recorder:latest-release').pull()
                   }
                }
                sh "docker images"
