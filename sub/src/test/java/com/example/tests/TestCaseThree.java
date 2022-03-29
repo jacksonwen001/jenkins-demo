@@ -32,7 +32,7 @@ public class TestCaseThree {
 
     @Test
     public void testOpen(){
-        Configuration.remote = "http://127.0.0.1:4444/wd/hub";
+        Configuration.remote = "http://selenoid:4444/wd/hub";
         Map<String, Object> options = new HashMap<>();
         options.put(enableVNC, true);
         options.put(enableVideo, true);
