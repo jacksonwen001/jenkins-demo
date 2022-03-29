@@ -17,6 +17,8 @@ pipeline {
                     docker.image('selenoid/chrome:98.0')
                   }
                }
+               sh "docker images"
+               sh "docker ps "
             }
          }
         stage ('Run test') {
