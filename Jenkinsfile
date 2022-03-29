@@ -41,10 +41,11 @@ pipeline {
                 }
             }
         }
-    }
-    post {
-        always {
-            allure includeProperties: false, jdk: '', results: [[path: "sub/reports/qa/allure-results"]]
+        stage ('Generate report') {
+            steps {
+               allure includeProperties: false, jdk: '', results: [[path: "sub/reports/qa/allure-results"]]
+            }
         }
     }
+
 }
