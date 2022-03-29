@@ -32,14 +32,14 @@ public class TestCaseThree {
 
     @Test
     public void testOpen(){
-        Configuration.remote = "http://127.0.0.1:4445/wd/hub";
+        Configuration.remote = "http://127.0.0.1:4444/wd/hub";
         Map<String, Object> options = new HashMap<>();
         options.put(enableVNC, true);
         options.put(enableVideo, true);
         options.put(dns, new String[]{"8.8.8.8"});
         Configuration.browserCapabilities = new ChromeOptions();
         Configuration.browserCapabilities.setCapability(selenoidOptions, options);
-        open("https://www.baidu.com");
+        open("https://www.google.com");
         $("#id").shouldBe(Condition.visible).sendKeys("hello");
 
     }
