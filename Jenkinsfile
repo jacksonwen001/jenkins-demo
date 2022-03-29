@@ -1,12 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'gradle:6.9.2-jdk8'
-            reuseNode true
-        }
-    }
+    agent any
 
     stages {
+        agent {
+          docker {
+              image 'gradle:6.9.2-jdk8'
+              reuseNode true
+          }
+        }
         stage ('on-test') {
             steps {
                 sh "gradle -Denv=${env} sub:on-test"
