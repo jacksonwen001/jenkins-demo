@@ -39,7 +39,7 @@ public class TestCaseThree {
         options.put(dns, new String[]{"8.8.8.8"});
         Configuration.browserCapabilities = new ChromeOptions();
         Configuration.browserCapabilities.setCapability(selenoidOptions, options);
-        open("https://www.google.com");
+        open("https://segmentfault.com/a/1190000018028996");
         $("#id").shouldBe(Condition.visible).sendKeys("hello");
 
     }
